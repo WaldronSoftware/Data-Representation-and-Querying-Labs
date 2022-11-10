@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 const port = 4000;
 
-// Enable Cors rules
+// CORS
 app.use(cors());
 app.use(function (req, res, next)
 {
@@ -18,7 +18,7 @@ app.use(function (req, res, next)
 // Middleware
 app.use(bodyParser.json())
 
-// Data
+// Bookdata
 let jsonBooksData =
 {
     "books": [
@@ -62,13 +62,13 @@ let jsonBooksData =
     ]
 }
 
-// Get books api route
+// Book API route
 app.get('/api/books', (req, res) =>
 {
     res.json(jsonBooksData)
 })
 
-// Post books route
+// Book Post route
 app.post('/api/books', (req, res) =>
 {
     let result = req.body;
