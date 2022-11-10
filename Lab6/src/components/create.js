@@ -1,83 +1,66 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
-export class Create extends React.Component {
+export class Create extends React.Component
+{
+    constructor(props)
+    {
+        super(props);
 
-    constructor(){
-        super();
+        //Default state
+        this.state = { title: '', author: '', url: '' };
+
+        //Bind
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onChangeBookTitle = this.onChangeBookTitle.bind(this);
-        this.onChangeBookCover = this.onChangeBookCover.bind(this);
-        this.onChangeBookAuthor = this.onChangeBookAuthor.bind(this);
-        this.state = {
-            title:'',
-            cover:'',
-            author:''
-        }
-    }
-    handleSubmit(e){
-        e.preventDefault();
-        console.log(`Button clicked 
-        ${this.state.title},
-        ${this.state.cover},
-        ${this.state.author}`);
-        this.setState({
-            title:'',
-            cover:'',
-            author:''
-        })
+        this.changeTitle = this.changeTitle.bind(this);
+        this.changeAuthor = this.changeAuthor.bind(this);
+        this.changeUrl = this.changeUrl.bind(this);
     }
 
-    onChangeBookTitle(e){
-        this.setState({
-            title:e.target.value
-        })
-    }
-    onChangeBookCover(e){
-        this.setState({
-            cover:e.target.value
-        })
-    }
-    onChangeBookAuthor(e){
-        this.setState({
-            author:e.target.value
-        })
+    handleSubmit(event)
+    {
+        event.preventDefault();
+
+        //Submit alerts
+        alert('Name Submitted: ' + this.state.title);
+        alert('Author Submitted: ' + this.state.author);
+        alert('URL Submitted: ' + this.state.url);
     }
 
-    render() {
+    changeTitle(event)
+    {
+        //State update after submitting book name
+        this.setState({ title: event.target.value })
+    }
+
+    changeAuthor(event)
+    {
+        //State update after submitting author
+        this.setState({ author: event.target.value })
+    }
+
+    changeUrl(event)
+    {
+        //State update after submitting url
+        this.setState({ url: event.target.value })
+    }
+
+    render()
+    {
         return (
-            <div>
-                <h3>Hello from Create Component!</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Add Book Title: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={this.state.title}
-                            onChange={this.onChangeBookTitle}
-                        />
-                    </div>
+            <form onSubmit={this.handleSubmit}>
+                <p>Book Title:</p>
+                <input type="text" value={this.state.title} onChange={this.changeTitle} />
 
-                    <div className="form-group">
-                        <label>Add Book Cover: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={this.state.cover}
-                            onChange={this.onChangeBookCover}
-                        />
-                    </div>
+                <p>Author:</p>
+                <input type="text" value={this.state.author} onChange={this.changeAuthor} />
 
-                    <div className="form-group">
-                        <label>Add Author: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={this.state.author}
-                            onChange={this.onChangeBookAuthor}
-                        />
-                    </div>
-
-                    <input type="submit" value="Add Book" />
-                </form>
-            </div>
+                <p>Book Page Url:</p>
+                <input type="text" value={this.state.url} onChange={this.changeUrl} />
+                <br />
+                <br />
+                <Button type="submit" value="Submit" >Submit</Button>
+            </form>
         );
     }
 }

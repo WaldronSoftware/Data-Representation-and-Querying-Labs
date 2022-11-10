@@ -1,12 +1,16 @@
 import React from "react";
-import {BookItem} from './bookItem';
+import { BookItems } from './bookItems';
 
-export class Books extends React.Component{
-    render(){
-        return this.props.books.map(
-            (book)=>{
-                return <BookItem book={book} key={book.isbn}></BookItem>
-            }
+export class Books extends React.Component
+{
+    render()
+    {
+        return (
+            this.props.books.map(book =>
+            (
+                <BookItems book={book} key={book.isbn}></BookItems>
+            )
+            )
         );
     }
 }
